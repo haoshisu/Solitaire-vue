@@ -1,9 +1,11 @@
 <template>
   <div class="card-container" @click="isFlipped = !isFlipped">
-    <div class="poker-card" :class="{ flipped:  props.flipped }">
+    <div class="poker-card" :class="{ flipped:  props.flipped }"  >
       <!-- 卡牌正面 -->
       <div class="card-front">
-        <div class="card-suit" :class="{'card-suit-red': props.suit === '♥' || props.suit ==='♦'  }" >{{ props.suit }}</div>
+        <div class="card-suit" :class="{'card-suit-red': props.suit === '♥' || props.suit ==='♦'  }" >
+          {{ props.suit }}
+        </div>
         <div class="card-value">{{ props.value }}</div>
       </div>
       <!-- 卡牌背面 -->
@@ -15,14 +17,13 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
-const props = defineProps({
-  value:String,
-  suit:String,
-  flipped:Boolean,
-})
-const isFlipped = ref(true)
-
+  import {ref} from 'vue'
+  const props = defineProps({
+    value:String,
+    suit:String,
+    flipped:Boolean,
+  })
+  const isFlipped = ref(true)
 
 </script>
 
