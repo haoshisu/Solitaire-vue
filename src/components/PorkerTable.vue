@@ -12,10 +12,19 @@
         @dragstart="onDragStart(card, index, cardIndex)"
       />
     </div>
+    <!-- 剩下的牌 -->
     <div class="card-box-norepeat" @click="drawCard">
-      <PokerCard
-        v-for="card in piles[7]" :key="card.id" :value="card.value" :suit="card.suit" :flipped="card.flipped"
-      />
+      <div class="card-stack">
+        <PokerCard
+          v-for="card in piles[7]"
+          :key="card.id"
+          :value="card.value"
+          :suit="card.suit"
+          :flipped="card.flipped"
+          draggable="true"
+          class="card"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -157,7 +166,21 @@ function canStackCards(targetPile,draggedCard){
 }
 .card-box-norepeat{
   border: 2px solid black ; width: 60px; height: 90px; background-color: white; border-radius: 10px;
-  display: flex;  
+  position: relative; 
+  
+}
+
+.card-stack {
+  position: relative;
+  width: 100px;
+  height: 140px; /* 調整以適應卡片大小 */
+}
+
+.card {
+  position: absolute; /* 絕對定位，使牌可以重疊 */
+  top: 0;
+  left: 0;
+  transform: translateY(calc(var(--card-index) * 10px)); /* 每張牌垂直偏移 */
 }
 
 .poker-card {
